@@ -1,3 +1,5 @@
+import sys
+
 """
 Project Title: Find the character of an ASCII code
 
@@ -27,9 +29,7 @@ def num_check(chango):
     """
     """
 
-    #  print("What do we have here?")
     if chango > 127 or chango < 0:
-        #  print("What's this? This number will not do!")
         return False
 
     return True
@@ -42,8 +42,6 @@ def voila(chango):
     print("Voila!")
     print(chr(chango))
 
-    exit()
-
 
 if __name__ == "__main__":
     """
@@ -52,7 +50,8 @@ if __name__ == "__main__":
     print("And now, for my next trick, give me a number, between 0 and 127.")
     print("In exchange, I will make a letter appear in its place.")
 
-    presto = input("Give me a number, any number, between 0 and 127: ")
+    print(sys.argv)
+    presto = sys.argv[2]
 
     try:
         chango = int(presto)
