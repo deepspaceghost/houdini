@@ -1,72 +1,86 @@
 import argparse
-import json
+# import datetime
+# import json
+import logging
+import os
+# import shutil
 # import sys
 
-"""
-Project Title: Find the character of an ASCII code
+print("Setting up logging...")
+log_path = os.path.join(os.getcwd(), "logs/prometheus.log")
+if not os.path.isdir("logs"):
+    print("Logging directory not found.")
+    print("Creating logging directory...")
+    log_dir_path = os.path.join(os.getcwd(), "logs")
+    os.mkdir(log_dir_path)
+    f = open(log_path, "x")
+    f.close()
 
-Project Date: 01/17/2021
+elif not os.path.exists(log_path):
+    f = open(log_path, "x")
+    f.close()
 
-Project Description: Write a program that receives an ASCII
-code (an integer between 0 and 127) and displays
-its character. For example, if the user enters 97, the
-program displays the character a.
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    filename=log_path)
 
-Input: Enter an ASCII code: 69 [enter]
-
-Input constraints: Is the input an integer? Between 0 and 127?
-
-Compute
-"""
-
-# Current task(s): as of 1:39am, 1/25/2021, create tests for individual functions
-
-# Output: The character is E
-
-"""
-git add *
-git commit -m "some message"
-git push origin dev
-"""
+logger = logging.getLogger()
 
 
-def num_check(chango):
+def ascii(butt_key):
     """
     """
 
-    if chango > 127 or chango < 0:
-        return False
+    print("Checking number...")
+    logger.info("Checking number...")
+    if butt_key > 1114111 or butt_key < 0:
+        print("What does Solaris want from us?")
+        logger.info("What does Solaris want from us?")
+        print("{0} is either not within range, or is not an integer.".format(butt_key))
+        logger.info("{0} is either not within range, or is not an integer.".format(butt_key))
+        print("To continue, try a number between 0 and 1,114,111.")
+        logger.info("To continue, try a number between 0 and 1,114,111.")
 
-    return True
+    else:
+        print("Converting integer...")
+        logger.info("Converting integer...")
+        print(chr(butt_key))
+        logger.info(chr(butt_key))
 
 
-def voila(chango):
+def main():
     """
     """
 
-    print("Voila!")
-    print(chr(chango))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ascii",
+                        action="store",
+                        nargs=1,
+                        help="Usage: ./prometheus.py --ascii [butt_key]",
+                        dest="ascii_args")
+
+    args = parser.parse_args()
+
+    if args.ascii_args:
+        butt_key = int(args.ascii_args[0])
+        ascii(butt_key)
+
+
+# def create_record(input1, output1):
+#     """
+#     """
+
+#     print("Creating record...")
+#     logger.info("Creating record...")
+#     dt = datetime.datetime.now()
+#     record = {"timestamp": dt, "input": {"input1": input1}, "output": {"output1": output1}}
+#     with open("record.json", "w") as write_file:
+#         json.dump(record, write_file)
 
 
 if __name__ == "__main__":
     """
     """
 
-    data = {"president": {"name": "Zaphod Beeblebrox", "species": "Betelgeusian"}}
-    with open("data_file.json", "w") as write_file:
-        json.dump(data, write_file)
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--voila",
-                        action="store",
-                        nargs=1,
-                        help="Usage: ./houdini.py --voila [chango]",
-                        dest="voila_args")
-
-    args = parser.parse_args()
-
-    chango = int(args.voila_args[0])
-    if num_check(chango):
-        voila(chango)
-    else:
-        print("For this trick, I require a number between 0 and 127.")
+    main()
