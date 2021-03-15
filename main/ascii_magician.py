@@ -13,9 +13,11 @@ class ASCII_Magician():
             logger.info("{0} is either not within range, or is not an integer.".format(butt_key))
             print("To continue, try a number between 0 and 1,114,111.")
             logger.info("To continue, try a number between 0 and 1,114,111.")
+            return None
 
         else:
             print("Converting integer...")
             logger.info("Converting integer...")
-            print(chr(butt_key))
-            logger.info(chr(butt_key))
+            chango = chr(butt_key)
+            logger.info(chango)
+            return chango

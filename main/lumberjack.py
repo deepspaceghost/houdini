@@ -6,16 +6,22 @@ class Logger():
     log_path = ""
 
     def get_logger(self):
+        """
+        """
 
         self.set_log_path()
         self.build_logger()
         return logging.getLogger()
 
     def set_log_path(self):
+        """
+        """
 
-        self.log_path = os.path.join(os.getcwd(), "logs/prometheus.log")
+        self.log_path = os.path.join(os.getcwd(), "logs/houdini.log")
 
     def build_logger(self):
+        """
+        """
 
         print("Setting up logging...")
         self.build_log_dir()
@@ -25,6 +31,8 @@ class Logger():
             filename=self.log_path)
 
     def build_log_dir(self):
+        """
+        """
 
         if not os.path.isdir("logs"):
             print("Logging directory not found.")
