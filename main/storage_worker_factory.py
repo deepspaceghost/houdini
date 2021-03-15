@@ -1,4 +1,4 @@
-from json_historian import JSON_Historian
+from json_storage_worker import JSON_Historian
 
 class Historian_Factory():
 

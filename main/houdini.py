@@ -1,8 +1,9 @@
 import argparse
+import datetime
+
 from ascii_magician import ASCII_Magician
 from lumberjack import Logger
-from historian_factory import Historian_Factory
-import datetime
+from storage_worker_factory import Historian_Factory
 
 
 def get_execution_input(butt_key):
