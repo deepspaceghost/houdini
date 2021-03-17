@@ -6,44 +6,47 @@ from lumberjack import Logger
 from storage_worker_factory import Historian_Factory
 
 
-def get_execution_input(butt_key):
+class EXECUTION_History():
     """
     """
 
-    input1 = {}
-    input1["input"] = {}
-    input1["input"]["butt_key"] = butt_key
-    return input1
+    def get_timestamp():
+        """
+        """
+
+        ct = datetime.datetime.now()
+        return ct.strftime("%Y/%m/%d-%H:%M:%S")
+
+    def get_execution_input(butt_key):
+        """
+        """
+
+        input1 = {}
+        input1["input"] = {}
+        input1["input"]["butt_key"] = butt_key
+        return input1
 
 
-def get_execution_output(chango):
-    """
-    """
+    def get_execution_output(chango):
+        """
+        """
 
-    output1 = {}
-    output1["output"] = {}
-    output1["output"]["chango"] = chango
-    return output1
-
-
-def get_timestamp():
-    """
-    """
-
-    ct = datetime.datetime.now()
-    return ct.strftime("%Y/%m/%d-%H:%M:%S")
+        output1 = {}
+        output1["output"] = {}
+        output1["output"]["chango"] = chango
+        return output1
 
 
-def store_execution(timestamp, input1, output1):
-    """
-    """
+    def store_execution(timestamp, input1, output1):
+        """
+        """
 
-    historian_factory = Historian_Factory()
-    json_historian = historian_factory.build_historian("json")
-    json_historian.create_execution_record(timestamp, input1, output1)
-    json_historian.print_execution_record()
-    json_historian.write_execution_history()
-    json_historian.print_execution_history()
+        historian_factory = Historian_Factory()
+        json_historian = historian_factory.build_historian("json")
+        json_historian.create_execution_record(timestamp, input1, output1)
+        json_historian.print_execution_record()
+        json_historian.write_execution_history()
+        json_historian.print_execution_history()
 
 
 def main():
@@ -64,10 +67,11 @@ def main():
         magician = ASCII_Magician()
         lumberjack = Logger()
         chango = magician.voila(butt_key, lumberjack.get_logger())
-        timestamp = get_timestamp()
-        input1 = get_execution_input(butt_key)
-        output1 = get_execution_output(chango)
-        store_execution(timestamp, input1, output1)
+        execution_history = EXECUTION_History()
+        timestamp = execution_history.get_timestamp()
+        input1 = execution_history.get_execution_input(butt_key)
+        output1 = execution_history.get_execution_output(chango)
+        execution_history.store_execution(timestamp, input1, output1)
 
 
 if __name__ == "__main__":
