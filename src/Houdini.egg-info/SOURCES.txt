@@ -1,0 +1,9 @@
+README.md
+setup.py
+src/houdini.py
+src/Houdini.egg-info/PKG-INFO
+src/Houdini.egg-info/SOURCES.txt
+src/Houdini.egg-info/dependency_links.txt
+src/Houdini.egg-info/entry_points.txt
+src/Houdini.egg-info/requires.txt
+src/Houdini.egg-info/top_level.txt
