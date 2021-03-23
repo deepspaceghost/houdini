@@ -50,7 +50,7 @@ def store_execution(timestamp, input1, output1):
 @click.group()
 def cli():
     """
-    Houdini takes an ASCII code and returns an the corresponding ASCII character.
+    Houdini takes an ASCII code and returns the corresponding ASCII character.
     """
     pass
 
@@ -78,6 +78,7 @@ def voila(butt_key):
     lumberjack = Logger()
     chango = magician.voila(butt_key, lumberjack.get_logger())
     click.echo(chango)
+    
     timestamp = get_timestamp()
     input1 = get_execution_input(butt_key)
     output1 = get_execution_output(chango)
